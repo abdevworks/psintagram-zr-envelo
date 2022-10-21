@@ -1,12 +1,19 @@
-<select name="dogs" [(ngModel)]="selectedDog" (change)="handleBreedChange()">
-  <option disabled>-- wybierz rasę --</option>
-  <option
-    *ngFor="let dog of dogsList"
-    [ngValue]="dog">
-    {{capitalize(dog.breed)}}
-    {{dog.subBreed ? capitalize(dog.subBreed) : ""}}
-  </option>
-</select>
+<div class="hero">
+  <select
+    name="dogs"
+    [(ngModel)]="selectedBreed"
+    (change)="handleBreedChange()"
+  >
+    <option disabled [ngValue]="undefined">-- wybierz rasę --</option>
+    <option *ngFor="let dog of dogsList" [ngValue]="dog">
+      {{ capitalize(dog.breed) }}
+      <span *ngIf="dog.subBreed">{{ capitalize(dog.subBreed) }}</span>
+    </option>
+  </select>
 
-
-
+  <app-dog-card
+    *ngIf="selectedBreedImage"
+    [selectedBreed]="selectedBreed"
+    [selectedBreedImage]="selectedBreedImage"
+  ></app-dog-card>
+</div>

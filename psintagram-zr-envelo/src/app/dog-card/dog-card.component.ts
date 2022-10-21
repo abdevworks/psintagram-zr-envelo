@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input  } from '@angular/core';
+import { Breed } from '../Breed';
+
 
 @Component({
   selector: 'app-dog-card',
@@ -6,6 +8,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./dog-card.component.scss']
 })
 export class DogCardComponent implements OnInit {
+  @Input() selectedBreed!: Breed;
+  @Input() selectedBreedImage!: string;
 
   constructor() { }
 

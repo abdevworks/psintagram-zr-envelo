@@ -1,10 +1,8 @@
-<app-top-bar></app-top-bar>
-<main>
-  <section class="hero-section">
-    <app-dog-list></app-dog-list>
-    <app-dog-card></app-dog-card>
-  </section>
-</main>
-
+<div class="app">
+  <app-top-bar></app-top-bar>
+  <div class="app__body">
+    <app-dog-list [dogsList]="dogsList"></app-dog-list>
+  </div>
+</div>
 
 <router-outlet></router-outlet>

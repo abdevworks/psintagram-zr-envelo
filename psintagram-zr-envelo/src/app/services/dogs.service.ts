@@ -1,3 +1,4 @@
+import { Breed } from './../Breed';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
@@ -9,8 +10,18 @@ export class DogsService {
 
   constructor(private httpClient: HttpClient) {}
 
-  getDogs() {
+  getAllBreeds() {
     return this.httpClient.get(this.url);
   }
 
+  getSelectedBreed(selectedBreed: Breed) {
+    if(!selectedBreed.subBreed){
+      return this.httpClient.get(
+        `https://dog.ceo/api/breed/${selectedBreed.breed}/images/random`
+      );
+    }
+    return this.httpClient.get(
+      `https://dog.ceo/api/breed/${selectedBreed.breed}/${selectedBreed.subBreed}/images/random`
+    );
+  }
 }
