@@ -1,35 +1,33 @@
 import { TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { DogsService } from './services/dogs.service';
 
 describe('AppComponent', () => {
+  let service: DogsService;
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [
-        RouterTestingModule
-      ],
-      declarations: [
-        AppComponent
-      ],
+      imports: [RouterTestingModule, HttpClientTestingModule],
+      providers: [DogsService],
+      declarations: [AppComponent],
     }).compileComponents();
+
+    service = TestBed.inject(DogsService);
   });
 
-  it('should create the app', () => {
+  it('should be created', () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'psintagram-zr-envelo'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app.title).toEqual('psintagram-zr-envelo');
+  it('service should be created', () => {
+    expect(service).toBeTruthy();
   });
 
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('psintagram-zr-envelo app is running!');
+  it('should have getAllBreeds function', () => {
+    expect(service.getAllBreeds).toBeTruthy();
   });
 });
